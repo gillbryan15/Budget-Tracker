@@ -144,7 +144,7 @@ function renderExpenseList() {
   });
 }
 
-const resetBtn = document.getElementById("reset-btn");
+/* const resetBtn = document.getElementById("reset-btn");
 
 resetBtn.addEventListener("click", function() {
   totalBudget = 0;
@@ -157,4 +157,4 @@ resetBtn.addEventListener("click", function() {
   setupPanel.style.display = "flex";
 
   budgetAmountInput.value = "";
-});
+}); */
