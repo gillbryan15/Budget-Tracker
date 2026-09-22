@@ -12,6 +12,9 @@ const expenseList = document.getElementById("expense-list");
 const progressRing = document.getElementById("progress-ring");
 const ringLabel = document.getElementById("ring-label");
 
+const trackButton = document.getElementById("show-track-btn");
+const expenseDiv = document.getElementById("expense-adder")
+
 let totalBudget = 0;
 let expenses = [];
 
@@ -23,6 +26,17 @@ setBudgetBtn.addEventListener("click", function() {
 
   updateRing();
 });
+
+ trackButton.addEventListener("click", function() { 
+
+    if (expenseDiv.style.display === "none") {
+        expenseDiv.style.display = "flex";
+    }
+
+    else {
+        expenseDiv.style.display = "none";
+    }
+ });
 
 addExpenseBtn.addEventListener("click", function(){
     const expenseName = expenseNameInput.value;

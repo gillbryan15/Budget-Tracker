@@ -17,3 +17,101 @@
   font-weight: bold;
   font-size: 1.2rem;
 }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #f4f6f8;
+  color: #2d2d2d;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.setup-panel {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.setup-panel input {
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.setup-panel button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.dashboard {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.ring-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 30px auto;
+}
+
+.expense-adder {
+  display: none;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.expense-adder input,
+.expense-adder select {
+  flex: 1;
+  min-width: 100px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.expense-adder button {
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#expense-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#expense-list li {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+#expense-list li:last-child {
+  border-bottom: none;
+}
