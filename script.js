@@ -26,6 +26,7 @@ setBudgetBtn.addEventListener("click", function() {
 
   updateRing();
   saveBudgetData();
+  renderExpenseList();
 });
 
  trackButton.addEventListener("click", function() { 
@@ -59,15 +60,12 @@ addExpenseBtn.addEventListener("click", function(){
 
     const remaining = totalBudget - totalSpent;
 
-    const expenseItem = document.createElement("li");
-    expenseItem.textContent = newExpense.name + " - RM " + newExpense.amount.toFixed(2) + " (" + newExpense.category + ")";
-    expenseList.appendChild(expenseItem);
-
     expenseNameInput.value = "";
     expenseAmountInput.value = "";
 
     updateRing();
     saveBudgetData();
+    renderExpenseList();
 
 });
 
@@ -116,4 +114,47 @@ if (totalBudget !== 0) {
   setupPanel.style.display = "none";
   dashboard.style.display = "block";
   updateRing();
+  renderExpenseList();
+  
 }
+
+function renderExpenseList() {
+  expenseList.innerHTML = "";
+
+  expenses.forEach(function(expense) {
+    const expenseItem = document.createElement("li");
+    expenseItem.textContent = expense.name + " - RM " + expense.amount.toFixed(2) + " (" + expense.category + ")";
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "×";
+    deleteBtn.classList.add("delete-expense-btn");
+
+    deleteBtn.addEventListener("click", function() {
+      expenses = expenses.filter(function(e) {
+        return e !== expense;
+      });
+
+      updateRing();
+      saveBudgetData();
+      renderExpenseList();
+    });
+
+    expenseItem.appendChild(deleteBtn);
+    expenseList.appendChild(expenseItem);
+  });
+}
+
+const resetBtn = document.getElementById("reset-btn");
+
+resetBtn.addEventListener("click", function() {
+  totalBudget = 0;
+  expenses = [];
+
+  localStorage.removeItem("myBudget");
+  localStorage.removeItem("myExpenses");
+
+  dashboard.style.display = "none";
+  setupPanel.style.display = "flex";
+
+  budgetAmountInput.value = "";
+});
