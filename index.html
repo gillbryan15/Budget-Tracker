@@ -19,7 +19,13 @@
 
   <div id="dashboard" class="dashboard">
     <p id="remaining-label">Remaining: RM 0.00</p>
-
+<div class="ring-container">
+  <svg width="150" height="150" viewBox="0 0 150 150">
+    <circle cx="75" cy="75" r="65" stroke="#eee" stroke-width="12" fill="none"/>
+    <circle id="progress-ring" cx="75" cy="75" r="65" stroke="#22c55e" stroke-width="12" fill="none" stroke-linecap="round"/>
+  </svg>
+  <p id="ring-label" class="ring-label">RM 0.00</p>
+</div>
     <div class="expense-adder">
       <input type="text" id="expense-name-input" placeholder="What did you spend on?">
       <input type="number" id="expense-amount-input" placeholder="Amount">
