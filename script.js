@@ -25,6 +25,7 @@ setBudgetBtn.addEventListener("click", function() {
   dashboard.style.display = "block";
 
   updateRing();
+  saveBudgetData();
 });
 
  trackButton.addEventListener("click", function() { 
@@ -66,6 +67,7 @@ addExpenseBtn.addEventListener("click", function(){
     expenseAmountInput.value = "";
 
     updateRing();
+    saveBudgetData();
 
 });
 
@@ -93,4 +95,25 @@ function updateRing() {
   } else {
     progressRing.style.stroke = "#ef4444"; // red
   }
+}
+
+const savedBudget = localStorage.getItem("myBudget");
+const savedExpenses = localStorage.getItem("myExpenses");
+
+if (savedBudget) {
+  totalBudget = Number(savedBudget);
+}
+if (savedExpenses) {
+  expenses = JSON.parse(savedExpenses);
+}
+
+function saveBudgetData() {
+  localStorage.setItem("myBudget", totalBudget);
+  localStorage.setItem("myExpenses", JSON.stringify(expenses));
+}
+
+if (totalBudget !== 0) {
+  setupPanel.style.display = "none";
+  dashboard.style.display = "block";
+  updateRing();
 }
