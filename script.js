@@ -2,7 +2,6 @@ const setupPanel = document.getElementById("setup-panel");
 const dashboard = document.getElementById("dashboard");
 const budgetAmountInput = document.getElementById("budget-amount-input");
 const setBudgetBtn = document.getElementById("set-budget-btn");
-const remainingLabel = document.getElementById("remaining-label");
 
 const expenseNameInput = document.getElementById("expense-name-input");
 const expenseAmountInput = document.getElementById("expense-amount-input");
@@ -21,8 +20,6 @@ setBudgetBtn.addEventListener("click", function() {
 
   setupPanel.style.display = "none";
   dashboard.style.display = "block";
-
-  remainingLabel.textContent = "Remaining: RM " + totalBudget.toFixed(2);
 
   updateRing();
 });
@@ -46,7 +43,6 @@ addExpenseBtn.addEventListener("click", function(){
    });
 
     const remaining = totalBudget - totalSpent;
-    remainingLabel.textContent = "Remaining: RM " + remaining.toFixed(2);
 
     const expenseItem = document.createElement("li");
     expenseItem.textContent = newExpense.name + " - RM " + newExpense.amount.toFixed(2) + " (" + newExpense.category + ")";
