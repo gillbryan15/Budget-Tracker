@@ -13,7 +13,10 @@ const progressRing = document.getElementById("progress-ring");
 const ringLabel = document.getElementById("ring-label");
 
 const trackButton = document.getElementById("show-track-btn");
-const expenseDiv = document.getElementById("expense-adder")
+const expenseDiv = document.getElementById("expense-adder");
+
+const resetBtn = document.getElementById("reset-btn");
+
 
 let totalBudget = 0;
 let expenses = [];
@@ -144,8 +147,6 @@ function renderExpenseList() {
   });
 }
 
-/* const resetBtn = document.getElementById("reset-btn");
-
 resetBtn.addEventListener("click", function() {
   totalBudget = 0;
   expenses = [];
@@ -157,4 +158,4 @@ resetBtn.addEventListener("click", function() {
   setupPanel.style.display = "flex";
 
   budgetAmountInput.value = "";
-}); */
+}); 

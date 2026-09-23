@@ -129,3 +129,15 @@ header {
   cursor: pointer;
   font-weight: bold;
 }
+
+#reset-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto 20px auto;
+}
