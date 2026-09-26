@@ -55,11 +55,13 @@ addExpenseBtn.addEventListener("click", function(){
     const expenseName = expenseNameInput.value;
     const expenseAmount = Number(expenseAmountInput.value);
     const expenseCategory = expenseCategoryInput.value;
+    
 
     const newExpense = {
     name : expenseName,
     amount : expenseAmount,
-    category : expenseCategory
+    category : expenseCategory,
+    date: getTodayString()
     };
 
     expenses.push(newExpense);
@@ -142,7 +144,25 @@ if (totalBudget !== 0) {
 function renderExpenseList() {
   expenseList.innerHTML = "";
 
+  let lastDateShown = null;
+
   expenses.forEach(function(expense) {
+     if (expense.date !== lastDateShown) {
+  const dateHeader = document.createElement("li");
+  
+     if (expense.date === getTodayString()) {
+  dateHeader.textContent = "Today";
+  } 
+     else {
+    dateHeader.textContent = expense.date;
+  }
+  
+  dateHeader.classList.add("date-header");
+  expenseList.appendChild(dateHeader);
+
+  lastDateShown = expense.date;
+}
+
     const expenseItem = document.createElement("li");
     expenseItem.textContent = expense.name + " - RM " + expense.amount.toFixed(2) + " (" + expense.category + ")";
 
@@ -190,4 +210,12 @@ function updateDaysLeft() {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   daysLeftLabel.textContent = "Days Left: " + diffDays;
+}
+
+function getTodayString() {
+  const d = new Date();
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
 }

@@ -145,3 +145,13 @@ header {
 #days-left-label {
   text-align: center;
 }
+
+.date-header {
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: #6b7280;
+  padding: 12px 0 4px 0;
+  border-bottom: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
