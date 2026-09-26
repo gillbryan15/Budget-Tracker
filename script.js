@@ -17,12 +17,19 @@ const expenseDiv = document.getElementById("expense-adder");
 
 const resetBtn = document.getElementById("reset-btn");
 
+const budgetEndDateInput = document.getElementById("budget-end-date-input");
+const daysLeftLabel = document.getElementById("days-left-label");
+
+
+
 
 let totalBudget = 0;
+let budgetEndDate = "";
 let expenses = [];
 
 setBudgetBtn.addEventListener("click", function() {
   totalBudget = Number(budgetAmountInput.value);
+  budgetEndDate = budgetEndDateInput.value;
 
   setupPanel.style.display = "none";
   dashboard.style.display = "block";
@@ -30,6 +37,7 @@ setBudgetBtn.addEventListener("click", function() {
   updateRing();
   saveBudgetData();
   renderExpenseList();
+  updateDaysLeft();
 });
 
  trackButton.addEventListener("click", function() { 
@@ -69,6 +77,8 @@ addExpenseBtn.addEventListener("click", function(){
     updateRing();
     saveBudgetData();
     renderExpenseList();
+    updateDaysLeft();
+
 
 });
 
@@ -100,6 +110,7 @@ function updateRing() {
 
 const savedBudget = localStorage.getItem("myBudget");
 const savedExpenses = localStorage.getItem("myExpenses");
+const savedBudgetEndDate = localStorage.getItem("myBudgetEndDate");
 
 if (savedBudget) {
   totalBudget = Number(savedBudget);
@@ -107,10 +118,14 @@ if (savedBudget) {
 if (savedExpenses) {
   expenses = JSON.parse(savedExpenses);
 }
+if (savedBudgetEndDate){
+  budgetEndDate = savedBudgetEndDate;
+}
 
 function saveBudgetData() {
   localStorage.setItem("myBudget", totalBudget);
   localStorage.setItem("myExpenses", JSON.stringify(expenses));
+  localStorage.setItem("myBudgetEndDate", budgetEndDate);
 }
 
 if (totalBudget !== 0) {
@@ -118,6 +133,9 @@ if (totalBudget !== 0) {
   dashboard.style.display = "block";
   updateRing();
   renderExpenseList();
+  updateDaysLeft();
+
+
   
 }
 
@@ -140,6 +158,8 @@ function renderExpenseList() {
       updateRing();
       saveBudgetData();
       renderExpenseList();
+      updateDaysLeft();
+
     });
 
     expenseItem.appendChild(deleteBtn);
@@ -153,9 +173,21 @@ resetBtn.addEventListener("click", function() {
 
   localStorage.removeItem("myBudget");
   localStorage.removeItem("myExpenses");
+  localStorage.removeItem("myBudgetEndDate");
 
   dashboard.style.display = "none";
   setupPanel.style.display = "flex";
 
   budgetAmountInput.value = "";
+  budgetEndDateInput.value="";
 }); 
+
+function updateDaysLeft() {
+  const today = new Date();
+  const end = new Date(budgetEndDate);
+
+  const diffTime = end - today;
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  daysLeftLabel.textContent = "Days Left: " + diffDays;
+}
