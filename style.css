@@ -10,7 +10,6 @@
   position: relative;
   width: 150px;
   height: 150px;
-  margin: 0 auto 30px auto;
 }
 
 .ring-label {
@@ -154,4 +153,32 @@ header {
   border-bottom: none;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+.ring-and-stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.stats-btn {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stats-panel {
+  display : none;
+}
+
+#statistic-header {
+  text-align: center;
 }

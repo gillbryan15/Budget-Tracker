@@ -20,6 +20,10 @@ const resetBtn = document.getElementById("reset-btn");
 const budgetEndDateInput = document.getElementById("budget-end-date-input");
 const daysLeftLabel = document.getElementById("days-left-label");
 
+const showStatsBtn = document.getElementById("show-stats-btn");
+const statsPanel = document.getElementById("stats-panel");
+
+
 
 
 
@@ -278,3 +282,14 @@ function renderCategoryChart() {
     }
   });
 }
+
+
+showStatsBtn.addEventListener("click", function() {
+   if (statsPanel.style.display === "none"){
+    statsPanel.style.display = "block";
+   }
+
+   else{
+    statsPanel.style.display = "none";
+   }
+});
