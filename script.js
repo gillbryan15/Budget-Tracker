@@ -26,6 +26,7 @@ const daysLeftLabel = document.getElementById("days-left-label");
 let totalBudget = 0;
 let budgetEndDate = "";
 let expenses = [];
+let categoryChart = null;
 
 setBudgetBtn.addEventListener("click", function() {
   totalBudget = Number(budgetAmountInput.value);
@@ -38,6 +39,7 @@ setBudgetBtn.addEventListener("click", function() {
   saveBudgetData();
   renderExpenseList();
   updateDaysLeft();
+  renderCategoryChart();
 });
 
  trackButton.addEventListener("click", function() { 
@@ -80,6 +82,7 @@ addExpenseBtn.addEventListener("click", function(){
     saveBudgetData();
     renderExpenseList();
     updateDaysLeft();
+    renderCategoryChart();
 
 
 });
@@ -136,6 +139,7 @@ if (totalBudget !== 0) {
   updateRing();
   renderExpenseList();
   updateDaysLeft();
+  renderCategoryChart();
 
 
   
@@ -179,6 +183,7 @@ function renderExpenseList() {
       saveBudgetData();
       renderExpenseList();
       updateDaysLeft();
+      renderCategoryChart();
 
     });
 
@@ -218,4 +223,58 @@ function getTodayString() {
   const month = String(d.getMonth() + 1).padStart(2, '0');
   const day = String(d.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
+}
+
+function getCategoryTotals() {
+  const categoryTotals = {};
+
+  expenses.forEach(function(expense) {
+    if (categoryTotals[expense.category]) {
+      categoryTotals[expense.category] = categoryTotals[expense.category] + expense.amount;
+    } else {
+      categoryTotals[expense.category] = expense.amount;
+    }
+  });
+
+  return categoryTotals;
+}
+
+
+function renderCategoryChart() {
+  const categoryTotals = getCategoryTotals();
+
+  if (categoryChart) {
+  categoryChart.destroy();
+}
+
+
+  const labels = Object.keys(categoryTotals);
+  const data = Object.values(categoryTotals);
+
+  categoryChart = new Chart(document.getElementById("category-chart"), {
+    type: 'pie',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: data,
+        backgroundColor: ['#3b82f6', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6']
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const value = context.parsed;
+              const total = context.dataset.data.reduce(function(sum, val) {
+                return sum + val;
+              }, 0);
+              const percentage = ((value / total) * 100).toFixed(1);
+              return context.label + ": RM " + value.toFixed(2) + " (" + percentage + "%)";
+            }
+          }
+        }
+      }
+    }
+  });
 }
