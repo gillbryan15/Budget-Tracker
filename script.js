@@ -23,7 +23,7 @@ const daysLeftLabel = document.getElementById("days-left-label");
 const showStatsBtn = document.getElementById("show-stats-btn");
 const statsPanel = document.getElementById("stats-panel");
 
-
+const backBtn = document.getElementById("back-btn");
 
 
 
@@ -285,11 +285,22 @@ function renderCategoryChart() {
 
 
 showStatsBtn.addEventListener("click", function() {
+
    if (statsPanel.style.display === "none"){
     statsPanel.style.display = "block";
+    dashboard.style.display = "none";
    }
 
-   else{
-    statsPanel.style.display = "none";
+   else {
+       statsPanel.style.display = "none";
+       dashboard.style.display = "block";
    }
+
 });
+
+ backBtn.addEventListener("click", function() {
+         if (statsPanel.style.display === "block"){
+         statsPanel.style.display = "none";
+         dashboard.style.display = "block";
+         }
+        });

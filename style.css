@@ -138,7 +138,7 @@ header {
   font-size: 1rem;
   cursor: pointer;
   display: block;
-  margin: 0 auto 20px auto;
+  margin: 10px auto 20px auto;
 }
 
 #days-left-label {
@@ -181,4 +181,17 @@ header {
 
 #statistic-header {
   text-align: center;
+}
+
+#back-btn {
+  
+  background-color: #f59e0b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 20px auto;
 }
